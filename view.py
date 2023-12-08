@@ -10,10 +10,15 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 
 
 class Ui_MainWindow(object):
+    """
+    Creates the main window for our project and instantiates all the relevant objects
+    """
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setEnabled(True)
         MainWindow.resize(416, 415)
+        #Setting a fixed size
+        MainWindow.setFixedSize(416,415)
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.label = QtWidgets.QLabel(parent=self.centralwidget)
@@ -22,9 +27,13 @@ class Ui_MainWindow(object):
         self.predictRadioButton = QtWidgets.QRadioButton(parent=self.centralwidget)
         self.predictRadioButton.setGeometry(QtCore.QRect(100, 90, 81, 20))
         self.predictRadioButton.setObjectName("predictRadioButton")
+        self.buttonGroup_2 = QtWidgets.QButtonGroup(MainWindow)
+        self.buttonGroup_2.setObjectName("buttonGroup_2")
+        self.buttonGroup_2.addButton(self.predictRadioButton)
         self.historicalRadioButton = QtWidgets.QRadioButton(parent=self.centralwidget)
         self.historicalRadioButton.setGeometry(QtCore.QRect(250, 90, 100, 20))
         self.historicalRadioButton.setObjectName("historicalRadioButton")
+        self.buttonGroup_2.addButton(self.historicalRadioButton)
         self.inputField = QtWidgets.QLineEdit(parent=self.centralwidget)
         self.inputField.setGeometry(QtCore.QRect(200, 50, 113, 21))
         self.inputField.setObjectName("inputField")
@@ -41,6 +50,10 @@ class Ui_MainWindow(object):
         self.pushButton_2 = QtWidgets.QPushButton(parent=self.centralwidget)
         self.pushButton_2.setGeometry(QtCore.QRect(250, 340, 113, 32))
         self.pushButton_2.setObjectName("pushButton_2")
+        self.radioButton = QtWidgets.QRadioButton(parent=self.centralwidget)
+        self.radioButton.setGeometry(QtCore.QRect(-40, 370, 100, 20))
+        self.radioButton.setText("")
+        self.radioButton.setObjectName("radioButton")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -50,11 +63,14 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
+        """
+        Setting the text on the relevant objects
+        """
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "Stock Market App"))
-        self.predictRadioButton.setText(_translate("MainWindow", "Low"))
-        self.historicalRadioButton.setText(_translate("MainWindow", "High"))
+        self.predictRadioButton.setText(_translate("MainWindow", "Predict"))
+        self.historicalRadioButton.setText(_translate("MainWindow", "Historical"))
         self.label_2.setText(_translate("MainWindow", "Enter a stock ticker:"))
         self.pushButton.setText(_translate("MainWindow", "ENTER"))
         self.pushButton_2.setText(_translate("MainWindow", "CLEAR"))
